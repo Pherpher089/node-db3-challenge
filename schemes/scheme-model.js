@@ -1,5 +1,7 @@
+//Getting db config object
 const db = require('../data/db-config.js')
 
+//exporting all the helper functions
 module.exports = {
     find,
     findById,
@@ -19,6 +21,7 @@ function findById(id) {
     return db('schemes').where({id});
 }
 
+//Finds steps linked to the scheme via a forien key in the steps table
 function findSteps(id) {
     return db('schemes as sc')
     .join('steps as st', 'sc.id', 'st.scheme_id')
@@ -35,14 +38,17 @@ function findSteps(id) {
 //     .orderBy('st.step_number');
 // }
 
+//Adds a scheme to the db
 function add(scheme) {
     return db('schemes').insert(scheme);
 }
 
+//Updates a scheme in the dm specified by the id argument
 function update(scheme, id) {
     return db('schemes').where({id}).update(scheme);
 }
 
+//Removes the scheme with the givin id from the db
 function remove (id) {
     return db('schemes').where({id}).del();
 }
