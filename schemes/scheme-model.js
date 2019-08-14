@@ -8,7 +8,8 @@ module.exports = {
     findSteps,
     add,
     update,
-    remove
+    remove,
+    addStep
 }
 
 //Displays all schemes in db
@@ -51,4 +52,12 @@ function update(scheme, id) {
 //Removes the scheme with the givin id from the db
 function remove (id) {
     return db('schemes').where({id}).del();
+}
+
+function addStep(step, scheme_id) {
+    step.scheme_id = scheme_id;
+    return db('steps as st')
+    .join('schemes as sc', 'st.scheme_id', 'sc.id')
+    .insert(step)
+    .where({scheme_id})
 }

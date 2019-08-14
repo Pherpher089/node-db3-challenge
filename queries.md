@@ -34,3 +34,9 @@ JOIN [Products] AS p ON c.categoryID = p.categoryID
 GROUP BY c.CategoryName;
 ```
 ### (Stretch) Display OrderID and a  column called ItemCount that shows the total number of products placed on the order. Shows 196 records. 
+```SQL
+SELECT o.OrderID, SUM(od.Quantity) AS ItemCount FROM [Orders] AS o
+JOIN [OrderDetails] AS od ON o.OrderID = od.OrderID
+WHERE o.OrderID = od.OrderID
+GROUP BY o.OrderID
+```
