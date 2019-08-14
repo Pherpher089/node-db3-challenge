@@ -1,7 +1,7 @@
 # Database Queries
 
 ### Display the ProductName and CategoryName for all products in the database. Shows 76 records.
-```SLQ
+```SQL
 SELECT ProductName, CategoryName FROM [Products] AS p
 JOIN [Categories] AS c
 ON p.categoryID = c.categoryID;
